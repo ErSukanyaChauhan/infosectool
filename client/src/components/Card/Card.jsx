@@ -90,35 +90,7 @@ const Card = ({ theme, setTheme }) => {
                         </button>
                     </Link>
                 </div>
-                <div className='box'>
-                    <div className='card'>
-                        <div className='image'>
-                            <img src={hash} alt="" />
-                        </div>
-                        <div className='desc'>
-                            <h1>Coresponding File hash </h1>
-
-                            <p>Checkout corresponding file hash of MD5, SHA1 And SHA256</p>
-
-                        </div>
-                    </div>
-                    <button className='btn btn1' style={{ background: "rgba(154,101,198,1)" }}>Analyze</button>
-                </div>
-                <div className='box'>
-                    <div className='card'>
-                        <div className='image'>
-                            <img src={hash} alt="" />
-                        </div>
-                        <div className='desc'>
-                            <h1>Coresponding File hash </h1>
-
-                            <p>Checkout corresponding file hash of MD5, SHA1 And SHA256</p>
-
-                        </div>
-                        <button className='btn btn1' style={{ background: "rgba(154,101,198,1)" }}>Analyze</button>
-
-                    </div>
-                </div>
+            
             </div>
         </>
 
