@@ -86,7 +86,7 @@ const HashDetail = (props, { theme, setTheme }) => {
 
     async function getHashValueDetail(hash) {
         try {
-              const response = await fetch(`http://62.72.31.109:4000/api/hash/${hash}`);
+              const response = await fetch(`https://62.72.31.109:4000/api/hash/${hash}`);
             const result = await response.json();
             console.log(result);
             return result;
