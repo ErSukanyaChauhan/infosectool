@@ -16,7 +16,8 @@
     height: 102px;
 }
 .ip-header.dark {
-    color: #31a631;
+    /* color: #31a631; */
+    color:#d4dbd4;
 }
 
 .mainContainer {
