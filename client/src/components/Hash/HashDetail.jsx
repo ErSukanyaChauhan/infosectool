@@ -22,6 +22,8 @@ import TableRow from '@mui/material/TableRow';
 import Navbar from '../Navbar/Navbar';
 import "../Hash/HashDetail.css";
 import { FaSearch } from "react-icons/fa";
+import LinearProgress from '@mui/material/LinearProgress';
+
 const drawerWidth = 240;
 // const navItems = ['Home', 'About', 'Contact'];
 // const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -82,14 +84,18 @@ const HashDetail = (props, { theme, setTheme }) => {
     );
     const container = window !== undefined ? () => window().document.body : undefined;
     const paperStyle = { padding: 20, height: '30vh', width: 443, margin: "150px auto" }
-
+    const [loading, setloading] = useState(false);
 
     async function getHashValueDetail(hash) {
+
         try {
-              const response = await fetch(`https://infosectool.com:4000/api/hash/${hash}`);
+            setloading(true);
+            const response = await fetch(`https://infosectool.com:4000/api/hash/${hash}`);
             const result = await response.json();
             console.log(result);
+            setloading(false);
             return result;
+
         } catch (error) {
             console.error('Fetch error:', error);
             return null;
@@ -102,6 +108,8 @@ const HashDetail = (props, { theme, setTheme }) => {
         const details = await Promise.all(values.map(value => getHashValueDetail(value)));
         setHashValueDetail(details);
         console.log("details", details);
+        setloading(false);
+
     };
 
     const columns = [
@@ -109,7 +117,7 @@ const HashDetail = (props, { theme, setTheme }) => {
         { id: "md5", name: "MD5" },
         { id: "sha1", name: "SHA1" },
         { id: "sha256", name: "SHA256" },
-        { id: "reputaion", name: "REPUTATION" },
+        { id: "reputaion", name: "VirusTotal REPUTATION" },
     ];
     const toggle_mode = () => {
         theme == 'light' ? setTheme('dark') : setTheme('light');
@@ -117,14 +125,18 @@ const HashDetail = (props, { theme, setTheme }) => {
     return (
         <>
             <Navbar />
+
             <div className='Search'>
                 <div className='search-bar-container'>
                     <form onSubmit={handleSubmit} >
                         <div className='input-wrapper'>
-                            <input placeholder='MD5,SHA1,SHA256' value={hash} onChange={(e) => setHashValue(e.target.value)} />
+                            <input placeholder='MD5,SHA1,SHA256' value={hash} onChange={(e) => setHashValue(e.target.value)} required />
                             <Button className="Searchbutton" type="submit" ><FaSearch id="search-icon" /></Button>
                         </div>
                     </form>
+
+
+
                 </div>
             </div >
 
@@ -145,60 +157,63 @@ const HashDetail = (props, { theme, setTheme }) => {
                                 <TableCell className="thCell" align='center'>SHA256</TableCell>
                                 <TableCell className="thCell" align='center'>Reputation</TableCell> */}
                                 {columns.map((column) => (
-                                    <TableCell style={{ backgroundColor: "rgba(154, 101, 198, 1)", color: "white" }} key={column.id} align='center'>{column.name}</TableCell>
+                                    <TableCell style={{ backgroundColor: "rgba(154, 101, 198, 1)", color: "white" }} key={column.id}
+                                        align='center'>{column.name}</TableCell>
                                 ))}
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {hashValueDetail && hashValueDetail.map((detail, i) => (
-                                  <TableRow key={i}>
-                                  {
-                                      JSON.stringify(detail.data) ?
-                                          <>
-                                              <TableCell component="th" scope="row">
-                                                  {JSON.stringify(i + 1, null, 2)}
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  {JSON.stringify(detail.data.attributes.md5, null, 2)}
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  {JSON.stringify(detail.data.attributes.sha1, null, 2)}
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  {JSON.stringify(detail.data.attributes.sha256, null, 2)}
-                                              </TableCell>
-                                              {/* <TableCell component="th" scope="row">
-                                                  (
-                                                  {JSON.stringify(detail.data.attributes.last_analysis_stats.malicious, null, 2)} / {JSON.stringify(detail.data.attributes.last_analysis_stats.malicious +
-                                                      detail.data.attributes.last_analysis_stats.undetected, null, 2)}
-                                                  )
-                                              </TableCell> */}
-                                          </>
-                                          :
-                                          <>
-                                              <TableCell component="th" scope="row">
-                                                  {JSON.stringify(i + 1, null, 2)}
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  "NA"
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  "na"
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  "NA"
-                                              </TableCell>
-                                              <TableCell component="th" scope="row">
-                                                  "NA"
-                                              </TableCell>
-                                          </>
-                                  }
-                              </TableRow>
+
+                            {!loading && hashValueDetail && hashValueDetail.map((detail, i) => (
+                                <TableRow key={i} >
+                                    {
+                                        JSON.stringify(detail.data) ?
+                                            <>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {JSON.stringify(i + 1, null, 2)}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {JSON.stringify(detail.data.attributes.md5, null, 2)}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {JSON.stringify(detail.data.attributes.sha1, null, 2)}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {JSON.stringify(detail.data.attributes.sha256, null, 2)}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    (
+                                                    {JSON.stringify(detail.data.attributes.last_analysis_stats.malicious, null, 2)} / {JSON.stringify(detail.data.attributes.last_analysis_stats.malicious +
+                                                        detail.data.attributes.last_analysis_stats.undetected, null, 2)}
+                                                    )
+                                                </TableCell>
+                                            </>
+                                            :
+                                            <>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {JSON.stringify(i + 1, null, 2)}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    "NA"
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    "NA"
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    "NA"
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    "NA"
+                                                </TableCell>
+
+                                            </>
+                                    }
+                                </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
-
+                {loading && <Box sx={{ width: '100%' }}><LinearProgress /></Box>}
             </Paper>
             {/* </div> */}
 
