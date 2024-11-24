@@ -19,7 +19,7 @@ const IpDetail = ({ theme, setTheme }) => {
     const getIpAddressDetail = async (ip) => {
         try {
             setloading(true);
-            const response = await fetch(`http://infosectool.com:4000/api/check/${ip}`);
+            const response = await fetch(`https://api.infosectool.com/api/check/${ip}`);
             if (!response.ok) throw new Error(`Failed to fetch details for IP: ${ip}`);
             const result = await response.json();
 
