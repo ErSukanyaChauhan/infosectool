@@ -1,0 +1,25 @@
+.headings {
+    margin-left: 95px;
+    margin-top: 37px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.subheading {
+    color: rgba(154, 101, 198, 1);
+}
+
+.tdline {
+    border: 1px solid #ddd;
+}
+
+.containerIp {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.boxIp {
+    width: fit-content;
+    margin-left: 5%;
+    margin-top: 27px;
+}
