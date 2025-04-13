@@ -29,7 +29,7 @@ const Card = ({ theme, setTheme }) => {
                         </div>
                     </div>
 
-                    <Link to={"/corresponding-file-hash-checker"} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={"/multiple-hash-reputation-checker"} style={{ textDecoration: "none", color: "inherit" }}>
                         <button className='btn btn1' style={{ background: "rgb(98, 0, 234)" }} to="/HashDetail">
                             Analyze
                         </button>
@@ -47,7 +47,7 @@ const Card = ({ theme, setTheme }) => {
                             <p>Checkout Reputation of Multiple IPv4 Address.</p>
                         </div>
                     </div>
-                    <Link to={"/ip-reputation-checker"} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={"/multiple-ip-reputation-checker"} style={{ textDecoration: "none", color: "inherit" }}>
                         <button className='btn btn1' style={{ background: "rgb(98, 0, 234)" }} to="/ipdetail">
                             Analyze
                         </button>
@@ -65,7 +65,7 @@ const Card = ({ theme, setTheme }) => {
                             <p>Checkout Reputation of Multiple Domains & URLs.</p>
                         </div>
                     </div>
-                    <Link to={"/domain-reputation-checker"} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link to={"/multiple-url-reputation-checker"} style={{ textDecoration: "none", color: "inherit" }}>
                         <button className='btn btn1' style={{ background: "rgb(98, 0, 234)" }} to="/Domaindetail">
                             Analyze
                         </button>
