@@ -16,7 +16,7 @@ const HashDetail = ({ theme }) => {
 
     async function getHashValueDetail(hash) {
         try {
-            const response = await fetch(`http://localhost:4000/api/hash/${hash}`, {
+            const response = await fetch(`https://api.infosectool.com/api/hash/${hash}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ apiKey, hash })
