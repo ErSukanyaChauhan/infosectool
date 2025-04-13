@@ -18,7 +18,7 @@ const IpDetail = ({ theme }) => {
 
     const fetchIPDetails = async (ip) => {
         try {
-            const response = await fetch(`http://localhost:4000/api/check/${ip}`, {
+            const response = await fetch(`https://api.infosectool.com/api/check/${ip}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ apiKey, ip })
