@@ -1,0 +1,79 @@
+/* ipdetail.css */
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.api-key-input {
+    margin-bottom: 15px !important;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.search-button {
+    background-color: #6b567c !important;
+    color: white !important;
+}
+
+.search-button:hover {
+    background-color: #4a3a5a !important;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.loading-box {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.result-table {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header {
+    background-color: #6b567c !important;
+    color: white !important;
+}
+
+.more-info-button {
+    background-color: #007fff !important;
+    color: white !important;
+}
+
+.more-info-button:hover {
+    background-color: #0056b3 !important;
+}
