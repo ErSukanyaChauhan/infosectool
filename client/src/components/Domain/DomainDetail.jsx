@@ -16,7 +16,7 @@ const DomainDetail = ({ theme }) => {
 
     async function getDomainValueDetail(domain) {
         try {
-            const response = await fetch(`http://localhost:4000/api/domain/${domain}`, {
+            const response = await fetch(`https://api.infosectool.com/api/domain/${domain}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ apiKey, domain })
