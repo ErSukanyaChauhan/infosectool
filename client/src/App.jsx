@@ -17,9 +17,9 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Home />} path="/" />
-          <Route element={<HashDetail />} path="/corresponding-file-hash-checker" />
-          <Route element={<Ipdetail />} path="/ip-reputation-checker" />
-          <Route element={<DomainDetail />} path="/domain-reputation-checker" />
+          <Route element={<HashDetail />} path="/multiple-hash-reputation-checker" />
+          <Route element={<Ipdetail />} path="/multiple-ip-reputation-checker" />
+          <Route element={<DomainDetail />} path="/multiple-url-reputation-checker" />
           <Route element={<IpDetails />} path="/ipdetails" />
           <Route element={<HashDetails />} path="/hashdetails" />
           <Route element={<DomainDetails />} path="/domaindetails" />
