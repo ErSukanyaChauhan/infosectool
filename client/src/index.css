@@ -1,0 +1,16 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: #ffff;
+    transition: 0.5s;
+}
+
+.container.dark{
+background: #161625;
+}
