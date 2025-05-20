@@ -16,7 +16,7 @@ const DomainDetail = ({ theme }) => {
 
     async function getDomainValueDetail(domain) {
         try {
-            const response = await fetch(`https://api.infosectool.com/api/domain/${domain}`, {
+            const response = await fetch(`http://localhost:4000/api/domain/${domain}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ apiKey, domain })
@@ -64,7 +64,7 @@ const DomainDetail = ({ theme }) => {
             <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
                 <Paper elevation={6} sx={{ padding: 4, width: "60%", textAlign: "center" }}>
                     <Typography variant="h5" gutterBottom fontWeight="bold">
-                    Check Domain/URL Reputation
+                        Check Domain/URL Reputation
                     </Typography>
                     <form onSubmit={handleSubmit}>
                         <TextField
@@ -167,6 +167,28 @@ const DomainDetail = ({ theme }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+            </Paper>
+            <Paper sx={{ width: "80%", margin: "20px auto", padding: 3, borderRadius: 3 }}>
+                <Typography variant="h6" fontWeight="bold" gutterBottom>
+                    Steps to Use VirusTotal API
+                </Typography>
+                <Typography component="ol" sx={{ pl: 3 }}>
+                    <li>
+                        <strong>Get your VirusTotal API Key:</strong> Visit&nbsp;
+                        <a href="https://www.virustotal.com/gui/sign-in" target="_blank" rel="noopener noreferrer">
+                            virustotal.com
+                        </a>, log in, go to your profile, and copy the API key.
+                    </li>
+                    <li>
+                        <strong>Paste the API Key:</strong> In the input field labeled <em>"Enter your VirusTotal API Key"</em>.
+                    </li>
+                    <li>
+                        <strong>Enter hashes:</strong> You can input up to 20 hashes (comma-separated) in the provided box.
+                    </li>
+                    <li>
+                        <strong>Submit:</strong> Click the search button to fetch VirusTotal reputation data.
+                    </li>
+                </Typography>
             </Paper>
         </>
     );

@@ -16,7 +16,7 @@ const HashDetail = ({ theme }) => {
 
     async function getHashValueDetail(hash) {
         try {
-            const response = await fetch(`https://api.infosectool.com/api/hash/${hash}`, {
+            const response = await fetch(`http://localhost:4000/api/hash/${hash}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ apiKey, hash })
@@ -62,7 +62,7 @@ const HashDetail = ({ theme }) => {
             <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
                 <Paper elevation={6} sx={{ padding: 4, width: "60%", textAlign: "center" }}>
                     <Typography variant="h5" gutterBottom fontWeight="bold">
-                    Check Hashes Reputation
+                        Check Hashes Reputation
                     </Typography>
                     <form onSubmit={handleSubmit}>
                         <TextField
@@ -95,7 +95,7 @@ const HashDetail = ({ theme }) => {
                             rows={3}
                             sx={{ marginBottom: 2 }}
                         />
-{/* 
+                        {/* 
                         <TextField
                             fullWidth
                             placeholder="Enter up to 20 Hashes (comma-separated)"
@@ -145,11 +145,27 @@ const HashDetail = ({ theme }) => {
                                     <TableCell align="center">{detail?.data?.attributes?.md5 || 'NA'}</TableCell>
                                     <TableCell align="center">{detail?.data?.attributes?.sha1 || 'NA'}</TableCell>
                                     <TableCell align="center">{detail?.data?.attributes?.sha256 || 'NA'}</TableCell>
-                                    <TableCell align="center">
+                                    {(detail?.data?.attributes?.last_analysis_stats.malicious > 0) ? (
+                                        <TableCell align="center" style={{
+                                            marginTop: "12px", marginLeft: "25px", height: "66px", width: "69", backgroundColor: "#ed1212",
+                                            borderRadius: "50%", display: "inline-block", color: "#ffff"
+                                        }}
+                                        >
+                                            {detail?.data?.attributes?.last_analysis_stats.malicious || 0} /
+                                            {(detail?.data?.attributes?.last_analysis_stats.malicious || 0) +
+                                                (detail?.data?.attributes?.last_analysis_stats.undetected || 0)}
+                                        </TableCell>
+                                    ) : <TableCell align="center" style={{
+                                        marginTop: "12px", marginLeft: "25px", height: "66px", width: "69", backgroundColor: "green",
+                                        borderRadius: "50%", display: "inline-block", color: "#ffff"
+                                    }}
+                                    >
                                         {detail?.data?.attributes?.last_analysis_stats.malicious || 0} /
                                         {(detail?.data?.attributes?.last_analysis_stats.malicious || 0) +
                                             (detail?.data?.attributes?.last_analysis_stats.undetected || 0)}
                                     </TableCell>
+                                    }
+
                                     <TableCell align="center">
                                         <Button
                                             variant="contained"
@@ -166,6 +182,29 @@ const HashDetail = ({ theme }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+            </Paper>
+            
+            <Paper sx={{ width: "80%", margin: "20px auto", padding: 3, borderRadius: 3 }}>
+                <Typography variant="h6" fontWeight="bold" gutterBottom>
+                    Steps to Use VirusTotal API
+                </Typography>
+                <Typography component="ol" sx={{ pl: 3 }}>
+                    <li>
+                        <strong>Get your VirusTotal API Key:</strong> Visit&nbsp;
+                        <a href="https://www.virustotal.com/gui/sign-in" target="_blank" rel="noopener noreferrer">
+                            virustotal.com
+                        </a>, log in, go to your profile, and copy the API key.
+                    </li>
+                    <li>
+                        <strong>Paste the API Key:</strong> In the input field labeled <em>"Enter your VirusTotal API Key"</em>.
+                    </li>
+                    <li>
+                        <strong>Enter hashes:</strong> You can input up to 20 hashes (comma-separated) in the provided box.
+                    </li>
+                    <li>
+                        <strong>Submit:</strong> Click the search button to fetch VirusTotal reputation data.
+                    </li>
+                </Typography>
             </Paper>
         </>
     );

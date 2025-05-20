@@ -18,7 +18,7 @@ const IpDetail = ({ theme }) => {
 
     const fetchIPDetails = async (ip) => {
         try {
-            const response = await fetch(`https://api.infosectool.com/api/check/${ip}`, {
+            const response = await fetch(`http://localhost:4000/api/check/${ip}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ apiKey, ip })
@@ -102,7 +102,7 @@ const IpDetail = ({ theme }) => {
                             rows={3}
                             sx={{ marginBottom: 2 }}
                         />
-                     
+
                         <Button type="submit" variant="contained" color="primary" size="large">
                             <FaSearch />
                         </Button>
@@ -160,6 +160,28 @@ const IpDetail = ({ theme }) => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+            </Paper>
+            <Paper sx={{ width: "80%", margin: "20px auto", padding: 3, borderRadius: 3 }}>
+                <Typography variant="h6" fontWeight="bold" gutterBottom>
+                    Steps to Use VirusTotal API
+                </Typography>
+                <Typography component="ol" sx={{ pl: 3 }}>
+                    <li>
+                        <strong>Get your VirusTotal API Key:</strong> Visit&nbsp;
+                        <a href="https://www.virustotal.com/gui/sign-in" target="_blank" rel="noopener noreferrer">
+                            virustotal.com
+                        </a>, log in, go to your profile, and copy the API key.
+                    </li>
+                    <li>
+                        <strong>Paste the API Key:</strong> In the input field labeled <em>"Enter your VirusTotal API Key"</em>.
+                    </li>
+                    <li>
+                        <strong>Enter hashes:</strong> You can input up to 20 hashes (comma-separated) in the provided box.
+                    </li>
+                    <li>
+                        <strong>Submit:</strong> Click the search button to fetch VirusTotal reputation data.
+                    </li>
+                </Typography>
             </Paper>
         </>
     );
